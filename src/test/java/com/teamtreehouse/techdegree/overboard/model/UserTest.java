@@ -26,4 +26,16 @@ class UserTest {
 
         assertEquals(5, user.getReputation());
     }
+
+    @Test
+    void upvotingAnswerGetsProperReputation() {
+        Question question = new Question(user, "question");
+        Answer answer = new Answer(question, dummy, "answer");
+        board.addQuestion(question);
+        board.addAnswer(answer);
+
+        user.upVote(answer);
+
+        assertEquals(10, dummy.getReputation());
+    }
 }
