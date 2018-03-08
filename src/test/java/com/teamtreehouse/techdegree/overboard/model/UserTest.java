@@ -38,4 +38,16 @@ class UserTest {
 
         assertEquals(10, dummy.getReputation());
     }
+
+    @Test
+    void accceptingAnswerGetsProperReputation() {
+        Question question = new Question(user, "question");
+        Answer answer = new Answer(question, dummy, "answer");
+        board.addQuestion(question);
+        board.addAnswer(answer);
+
+        user.acceptAnswer(answer);
+
+        assertEquals(15, dummy.getReputation());
+    }
 }
