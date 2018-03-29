@@ -1,9 +1,11 @@
 package com.teamtreehouse.techdegree.overboard.model;
 
+import com.teamtreehouse.techdegree.overboard.exc.VotingException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class UserTest {
     private Board board;
@@ -42,5 +44,34 @@ class UserTest {
         user.acceptAnswer(answer);
 
         assertEquals(15, dummy.getReputation());
+    }
+
+
+    @Test
+    void upvotingQuestionByOriginalAuthorNotAllowed() {
+        assertThrows(VotingException.class, () ->
+                user.upVote(question)
+        );
+    }
+
+    @Test
+    void downvotingQuestionByOriginalAuthorNotAllowed() {
+        assertThrows(VotingException.class, () ->
+                user.downVote(question)
+        );
+    }
+
+    @Test
+    void upvotingAnswerByOriginalAuthorNotAllowed() {
+        assertThrows(VotingException.class, () ->
+                dummy.upVote(answer)
+        );
+    }
+
+    @Test
+    void downvotingAnswerByOriginalAuthorNotAllowed() {
+        assertThrows(VotingException.class, () ->
+                dummy.downVote(answer)
+        );
     }
 }
