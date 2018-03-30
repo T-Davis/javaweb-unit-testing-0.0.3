@@ -1,5 +1,6 @@
 package com.teamtreehouse.techdegree.overboard.model;
 
+import com.teamtreehouse.techdegree.overboard.exc.AnswerAcceptanceException;
 import com.teamtreehouse.techdegree.overboard.exc.VotingException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -72,6 +73,13 @@ class UserTest {
     void downvotingAnswerByOriginalAuthorNotAllowed() {
         assertThrows(VotingException.class, () ->
                 dummy.downVote(answer)
+        );
+    }
+
+    @Test
+    void onlyOriginalAuthorCanAcceptAnswer() {
+        assertThrows(AnswerAcceptanceException.class, () ->
+                dummy.acceptAnswer(answer)
         );
     }
 }
