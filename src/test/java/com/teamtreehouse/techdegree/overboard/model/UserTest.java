@@ -41,6 +41,13 @@ class UserTest {
     }
 
     @Test
+    void downvotingAnswerGetsProperReputation() {
+        user.downVote(answer);
+
+        assertEquals(-1, dummy.getReputation());
+    }
+
+    @Test
     void accceptingAnswerGetsProperReputation() {
         user.acceptAnswer(answer);
 
